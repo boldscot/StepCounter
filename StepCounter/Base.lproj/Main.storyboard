@@ -1,26 +1,109 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="StepCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most Steps In one Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RbU-D3-wTj">
+                                <rect key="frame" x="16" y="51" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NxK-4a-p83"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="0" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IM0-7V-XAJ">
+                                <rect key="frame" x="136" y="109" width="103" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="103" id="95i-LU-7qW"/>
+                                    <constraint firstAttribute="height" constant="50" id="iSK-r6-MOy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nuc-q9-GRx">
+                                <rect key="frame" x="16" y="166" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jZ7-xG-Gh7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="0" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOR-eX-vDv">
+                                <rect key="frame" x="136" y="224" width="108" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="DQi-57-Icy"/>
+                                    <constraint firstAttribute="height" constant="50" id="uKe-H5-vTJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zK5-i8-CmZ">
+                                <rect key="frame" x="16" y="282" width="343" height="365"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="54" id="MON-nJ-M0R">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="54"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MON-nJ-M0R" id="D4R-CK-WBG">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RbU-D3-wTj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7qq-Pl-NuE"/>
+                            <constraint firstItem="IM0-7V-XAJ" firstAttribute="leading" secondItem="yOR-eX-vDv" secondAttribute="leading" id="Bks-Ls-XQW"/>
+                            <constraint firstItem="RbU-D3-wTj" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Gg2-XC-9aX"/>
+                            <constraint firstItem="RbU-D3-wTj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="31" id="HcS-wh-aBY"/>
+                            <constraint firstItem="RbU-D3-wTj" firstAttribute="trailing" secondItem="Nuc-q9-GRx" secondAttribute="trailing" id="Ls4-Mr-TXf"/>
+                            <constraint firstItem="RbU-D3-wTj" firstAttribute="leading" secondItem="Nuc-q9-GRx" secondAttribute="leading" id="PQi-8F-G0L"/>
+                            <constraint firstItem="IM0-7V-XAJ" firstAttribute="centerX" secondItem="Nuc-q9-GRx" secondAttribute="centerX" id="PzK-y9-ClP"/>
+                            <constraint firstItem="zK5-i8-CmZ" firstAttribute="trailing" secondItem="Nuc-q9-GRx" secondAttribute="trailing" id="Q58-6q-LjF"/>
+                            <constraint firstItem="zK5-i8-CmZ" firstAttribute="leading" secondItem="Nuc-q9-GRx" secondAttribute="leading" id="XPO-X5-CMB"/>
+                            <constraint firstItem="zK5-i8-CmZ" firstAttribute="top" secondItem="yOR-eX-vDv" secondAttribute="bottom" constant="8" symbolic="YES" id="avU-s5-fYy"/>
+                            <constraint firstAttribute="bottom" secondItem="zK5-i8-CmZ" secondAttribute="bottom" constant="20" symbolic="YES" id="bU9-0G-IhA"/>
+                            <constraint firstItem="yOR-eX-vDv" firstAttribute="top" secondItem="Nuc-q9-GRx" secondAttribute="bottom" constant="8" symbolic="YES" id="i2i-aX-mUW"/>
+                            <constraint firstItem="IM0-7V-XAJ" firstAttribute="top" secondItem="RbU-D3-wTj" secondAttribute="bottom" constant="8" symbolic="YES" id="sSv-R6-I9w"/>
+                            <constraint firstItem="Nuc-q9-GRx" firstAttribute="top" secondItem="IM0-7V-XAJ" secondAttribute="bottom" constant="7" id="sa7-ug-gmY"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lastSevenDays" destination="zK5-i8-CmZ" id="Uk0-0Y-VIP"/>
+                        <outlet property="mostStepsLabel" destination="RbU-D3-wTj" id="kzG-jS-Rul"/>
+                        <outlet property="mostStepsText" destination="IM0-7V-XAJ" id="Ngj-Xj-sZz"/>
+                        <outlet property="stepCounterLabel" destination="Nuc-q9-GRx" id="nUE-1g-xGL"/>
+                        <outlet property="stepCounterText" destination="yOR-eX-vDv" id="YNX-jm-JV0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-116" y="312.59370314842579"/>
         </scene>
     </scenes>
 </document>
