@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var stepCounterLabel: UILabel!
     @IBOutlet weak var stepCounterText: UITextView!
     @IBOutlet weak var lastSevenDays: UITableView!
-    let weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    
     
     //Check if health kit is on device
     let healthStore: HKHealthStore? = {
@@ -75,13 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let calendar = NSCalendar.current
         let startOfDay = calendar.startOfDay(for: NSDate() as Date)
         getSteps(currentTime: NSDate(), startOfDay: startOfDay as NSDate)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        let dayOfWeekString = dateFormatter.string(from: startOfDay)
-        print(dayOfWeekString)
     }
-    
     
     // QUERY THE HEALTH APP FOR STEP COUNT DATA
     func getSteps(currentTime: NSDate, startOfDay: NSDate) {
@@ -94,8 +88,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //  Perform the Query
         let query = HKStatisticsCollectionQuery(quantityType: stepsCount!, quantitySamplePredicate: predicate, options: [.cumulativeSum], anchorDate: startOfDay as Date, intervalComponents:interval as DateComponents)
         
-        query.initialResultsHandler = {
-            query, results, error in
+        query.initialResultsHandler = { query, results, error in
             if error != nil {
                 print("ERROR")
                 return
@@ -122,17 +115,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // TABLE VIEW FUNCTIONS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weekDays.count
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // create a new cell if needed or reuse an old one
-        let cell:UITableViewCell = self.lastSevenDays.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        let cellIdentifier = "DayTableViewCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DayTableViewCell
         
-        // set the text from the data model
-        cell.textLabel?.text = self.weekDays[indexPath.row]
+        let calendar = NSCalendar.current
+        let startOfDay = calendar.date(byAdding: .day, value: indexPath.row, to: NSDate() as Date)
+        //let endOfDay = startOfDay?.addingTimeInterval(86400)
+       
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let dayOfWeekString = dateFormatter.string(from: startOfDay!)
+        
+        cell.dayOfTheWeek.text = dayOfWeekString
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+
 }
 
 

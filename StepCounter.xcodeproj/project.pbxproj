@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		529D2DB81DEE5EC700731FDF /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529D2DB71DEE5EC700731FDF /* DayTableViewCell.swift */; };
 		52EFF8EC1DEC5CC70072A262 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EFF8EB1DEC5CC70072A262 /* AppDelegate.swift */; };
 		52EFF8EE1DEC5CC70072A262 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EFF8ED1DEC5CC70072A262 /* ViewController.swift */; };
 		52EFF8F11DEC5CC70072A262 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EFF8EF1DEC5CC70072A262 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		529D2DB71DEE5EC700731FDF /* DayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DayTableViewCell.swift; path = ../DayTableViewCell.swift; sourceTree = "<group>"; };
 		52EFF8E81DEC5CC70072A262 /* StepCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EFF8EB1DEC5CC70072A262 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52EFF8ED1DEC5CC70072A262 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		52EFF8EA1DEC5CC70072A262 /* StepCounter */ = {
 			isa = PBXGroup;
 			children = (
+				529D2DB71DEE5EC700731FDF /* DayTableViewCell.swift */,
 				52EFF9191DEC5CD80072A262 /* StepCounter.entitlements */,
 				52EFF8EB1DEC5CC70072A262 /* AppDelegate.swift */,
 				52EFF8ED1DEC5CC70072A262 /* ViewController.swift */,
@@ -287,6 +290,7 @@
 			files = (
 				52EFF8EE1DEC5CC70072A262 /* ViewController.swift in Sources */,
 				52EFF91E1DED17B30072A262 /* File.swift in Sources */,
+				529D2DB81DEE5EC700731FDF /* DayTableViewCell.swift in Sources */,
 				52EFF8EC1DEC5CC70072A262 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
