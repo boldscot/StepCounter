@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var barChartView: BarChartView!
     let days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
     var stepChartValues = [Double]()
+    var IsAuthorised: Bool = false
     
     //Check if health kit is on device
     let healthStore: HKHealthStore? = {
@@ -41,13 +42,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             completion: {
                 (success, error) in
                     if success {
-                        print("SUCCESS")
+                        self.IsAuthorised = true
                     } else {
                         print(error.debugDescription)
                     }
-            }
-        )
-        updateSteps()
+            })
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,19 +56,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        updateSteps()
+        drawGraph()
         // This will call the updatesteps function every 5 seconds
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(ViewController.updateSteps), userInfo: nil, repeats: true)
-        Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(ViewController.updateStepsChart), userInfo: nil, repeats: false)
-        
+        if (IsAuthorised) {
+            Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(ViewController.drawGraph), userInfo: nil, repeats: false)
+        }
     }
     
-    func updateStepsChart() {
-        (print(stepChartValues))
+    func drawGraph() {
+        if(stepChartValues.count == 0) {stepChartValues = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
         setChart(dataPoints: days, values: stepChartValues)
+        stepChartValues = []
     }
     
-    
-    
+    //SET UP THE BAR CHART: PASS DATA TO IT AND BUILD THE GRAPH, SET COLORS ETC...
     func setChart(dataPoints: [String], values: [Double]) {
         barChartView.noDataText = "You need to provide data for the chart."
         barChartView.backgroundColor = UIColor.black
@@ -79,8 +81,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let chartEntry = BarChartDataEntry(x: Double(i), y: values[i])
             dataEntries.append(chartEntry)
         }
-        
         let barChartDataSet = BarChartDataSet(values: dataEntries, label: "Number of steps")
+        
         barChartDataSet.stackLabels = days
         barChartDataSet.colors = [UIColor.red]
         barChartDataSet.valueColors = [UIColor.white]
@@ -93,12 +95,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         barChartView.xAxis.axisLineColor = UIColor.white
         barChartView.leftAxis.labelTextColor = UIColor.white
         barChartView.rightAxis.labelTextColor = UIColor.white
+        barChartView.animate(xAxisDuration: 0.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
         
         let chartData = BarChartData(dataSet: barChartDataSet)
         barChartView.data = chartData
     }
     
-    // Update the steps
+    // UPDATE DAILY STEPS
     func updateSteps() {
         let calendar = NSCalendar.current
         let startOfDay = calendar.startOfDay(for: NSDate() as Date)
@@ -107,9 +110,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
+
     // QUERY THE HEALTH APP FOR STEP COUNT DATA
     func getSteps(endTime: NSDate, startOfDay: NSDate, completion: @escaping (String) -> Void) {
-        //Mark:
         var steps: Int = 0
         let stepsCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay as Date, end: endTime as Date, options: .strictStartDate)
@@ -135,9 +138,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 print("QUANTITY WAS NIL")
                             }
                         }
-                        completion(String(format: "%d", steps))
                     }
                 }
+                completion(String(format: "%d", steps))
             }
         }
         self.healthStore?.execute(query)
@@ -169,17 +172,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor.red.cgColor
         
+        //get the steps for the label
         getSteps(endTime: endOfDay! as Date as NSDate, startOfDay: startOfDay! as Date as NSDate, completion: { stepString in
             cell.stepsForDay.text = stepString
             self.stepChartValues.append(Double(stepString)!)
         })
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 57.5
-    }
-
 }
 
 
