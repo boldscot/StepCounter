@@ -65,6 +65,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    // DRAW THE GRAPH
     func drawGraph() {
         if(stepChartValues.count == 0) {stepChartValues = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
         setChart(dataPoints: days, values: stepChartValues)
