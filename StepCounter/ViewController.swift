@@ -67,9 +67,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // DRAW THE GRAPH
     func drawGraph() {
-        if(stepChartValues.count == 0) {stepChartValues = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
-        setChart(dataPoints: days, values: stepChartValues)
-        stepChartValues = []
+        if(stepChartValues.count == 0) {
+            stepChartValues = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+            setChart(dataPoints: days, values: stepChartValues)
+            stepChartValues = []
+        } else {
+            setChart(dataPoints: days, values: stepChartValues)
+        }
+        
     }
     
     //SET UP THE BAR CHART: PASS DATA TO IT AND BUILD THE GRAPH, SET COLORS ETC...
