@@ -53,10 +53,6 @@ class WeeklyTableViewController: UITableViewController {
         cell.weekLabel.text = "Week: "+getSubString(str: String(describing: dateComponents.weekOfYear), startIndex: 9, endIndex: -1)
         cell.startDateLabel.text = getSubString(str: dateString, startIndex: 9, endIndex: -16)
         cell.endDateLabel.text = getSubString(str: String(describing: endDay), startIndex: 9, endIndex: -16)
-        
-        //Border Code
-        cell.layer.borderWidth = 2
-        cell.layer.borderColor = UIColor.white.cgColor
 
         return cell
     }

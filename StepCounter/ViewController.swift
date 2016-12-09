@@ -130,7 +130,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         query.initialResultsHandler = { query, results, error in
             if error != nil {
-                print("ERROR")
                 return
             }
             DispatchQueue.main.async {
@@ -144,11 +143,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 print("QUANTITY WAS NIL")
                             }
                         }
-                        print("steps ",steps)
                     }
                 }
                 completion(String(format: "%d", steps))
-                
             }
         }
         self.healthStore?.execute(query)
@@ -177,7 +174,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.dayOfTheWeek.text = dayOfWeekString
         
         //Border Code
-        cell.layer.borderWidth = 0.5
+        cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.red.cgColor
         
         //get the steps for the label

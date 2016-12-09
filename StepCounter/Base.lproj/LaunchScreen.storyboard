@@ -13,26 +13,10 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
-                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <imageView key="view" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appsplash.png" id="ddw-iJ-e66">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appsplash.png" translatesAutoresizingMaskIntoConstraints="NO" id="e60-HQ-BUD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="e60-HQ-BUD" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="X5N-Pg-88L"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="e60-HQ-BUD" secondAttribute="bottom" id="aBq-0k-wG4"/>
-                            <constraint firstAttribute="trailing" secondItem="e60-HQ-BUD" secondAttribute="trailing" id="cNL-MQ-O1V"/>
-                            <constraint firstItem="e60-HQ-BUD" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="jGJ-Hn-0gH"/>
-                        </constraints>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
