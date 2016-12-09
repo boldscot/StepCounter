@@ -9,7 +9,7 @@
 import UIKit
 
 class WeeklyTableViewController: UITableViewController {
-    
+    var vc = ViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +32,7 @@ class WeeklyTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 8
     }
 
     
@@ -41,13 +41,15 @@ class WeeklyTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! WeeklyTotalViewCell
 
         let calendar = NSCalendar.current
-        let currentDay = NSDate()
-        
-        let dateComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDay as Date)
+        let currentDay = calendar.date(byAdding: .day, value: -(indexPath.row*7), to: calendar.startOfDay(for: NSDate() as Date) as Date)
+        let dateComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDay! as Date)
         let startDay = calendar.date(from: dateComponents)
         let endDay = startDay?.addingTimeInterval( -604799)
         let dateString = String(describing: startDay)
         
+        vc.getSteps(endTime: endDay! as Date as NSDate, startOfDay: startDay! as Date as NSDate, completion: { stepString in
+            cell.stepsLabel.text = stepString
+        })
         cell.weekLabel.text = "Week: "+getSubString(str: String(describing: dateComponents.weekOfYear), startIndex: 9, endIndex: -1)
         cell.startDateLabel.text = getSubString(str: dateString, startIndex: 9, endIndex: -16)
         cell.endDateLabel.text = getSubString(str: String(describing: endDay), startIndex: 9, endIndex: -16)
@@ -62,7 +64,9 @@ class WeeklyTableViewController: UITableViewController {
         let newStr = strRange.index(strRange.startIndex, offsetBy: startIndex)..<strRange.index(strRange.endIndex, offsetBy: endIndex)
         return str[newStr]
     }
-
+    
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

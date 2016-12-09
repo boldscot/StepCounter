@@ -139,9 +139,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 print("QUANTITY WAS NIL")
                             }
                         }
+                        print("steps ",steps)
                     }
                 }
                 completion(String(format: "%d", steps))
+                
             }
         }
         self.healthStore?.execute(query)
