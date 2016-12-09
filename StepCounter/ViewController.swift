@@ -47,6 +47,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         print(error.debugDescription)
                     }
             })
+        updateSteps()
+        drawGraph()
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,8 +58,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateSteps()
-        drawGraph()
         // This will call the updatesteps function every 5 seconds
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(ViewController.updateSteps), userInfo: nil, repeats: true)
         if (IsAuthorised) {
