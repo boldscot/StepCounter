@@ -83,9 +83,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         barChartView.backgroundColor = UIColor.black
         
         var dataEntries: [BarChartDataEntry] = []
-        for i in 0..<days.count-1{
-            let chartEntry = BarChartDataEntry(x: Double(i), y: values[i])
-            dataEntries.append(chartEntry)
+        for i in 0..<days.count-1 {
+            if (i < values.count) {
+                let chartEntry = BarChartDataEntry(x: Double(i), y: values[i])
+                dataEntries.append(chartEntry)
+            }
+            
         }
         let barChartDataSet = BarChartDataSet(values: dataEntries, label: "Number of steps")
         
